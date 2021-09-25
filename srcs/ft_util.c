@@ -80,3 +80,31 @@ int	ft_atoi(const char *str)
 	}
 	return (res * minus);
 }
+
+int		ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*dest;
+	size_t	i;
+
+	dest = (char *)malloc(ft_strlen((char *)s1) + 1);
+	if (dest == NULL)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen((char *)s1))
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}

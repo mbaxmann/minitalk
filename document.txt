@@ -3,3 +3,8 @@ Transmission du message:
 Utiliser du binaire.
 SIGUSR1 pour 0, SIGUSR2 pour 1.
 Temps de pause adequat nécessair.
+
+Status:
+
+Need error handling.
+Need to be normed.
