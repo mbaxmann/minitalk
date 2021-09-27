@@ -57,7 +57,7 @@ void	ft_handler(int signum, siginfo_t *info, void *context)
 	{
 		err = kill(info->si_pid, SIGUSR1);
 		if (err == -1)
-			ft_putstr_fd("Warning! Comminication with client failed.", 1);
+			ft_putstr_fd("Warning! Comminication with client failed.", 2);
 	}
 }
 
@@ -75,7 +75,7 @@ int	main(void)
 	err = sigaction(SIGUSR1, &act, NULL);
 	err = sigaction(SIGUSR2, &act, NULL);
 	if (err < 0)
-		ft_putstr_fd("Error: sigaction failed\n", 1);
+		ft_putstr_fd("Error: sigaction failed\n", 2);
 	write(1, "\n", 1);
 	while (1)
 		sleep(10);

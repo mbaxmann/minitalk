@@ -20,19 +20,11 @@ void	ft_send_str(char *str, int pid)
 	static int	byte = 0;
 
 	if (str)
-		stock = ft_strdup(str);
+		stock = str;
 	if (stock)
 		byte += ft_send_bit(stock[i], pid);
 	if (byte == -1)
-	{
-		free(stock);
 		exit(1);
-	}
-	if (stock && !stock[i] && byte == 8)
-	{
-		free(stock);
-		stock = NULL;
-	}
 	if (byte == 8)
 	{
 		byte = 0;
@@ -61,7 +53,7 @@ int	ft_send_bit(char c, int pid)
 		err = kill(pid_stock, SIGUSR1);
 	if (err == -1)
 	{
-		ft_putstr_fd("Error: invalid pid\n", 1);
+		ft_putstr_fd("Error: invalid pid\n", 2);
 		return (-1);
 	}
 	i--;
@@ -84,14 +76,14 @@ int	main(int ac, char **av)
 	sigemptyset(&act.sa_mask);
 	act.sa_handler = &ft_client_handler;
 	if (ac != 3)
-		ft_putstr_fd("Error: Wrong argument number!\n", 1);
+		ft_putstr_fd("Error: Wrong argument number!\n", 2);
 	else
 	{
 		ft_send_str(av[2], ft_atoi(av[1]));
 		err = sigaction(SIGUSR1, &act, NULL);
 		err = sigaction(SIGUSR2, &act, NULL);
 		if (err < 0)
-			ft_putstr_fd("Error: sigaction failed\n", 1);
+			ft_putstr_fd("Error: sigaction failed\n", 2);
 		while (1)
 			usleep(10);
 	}
